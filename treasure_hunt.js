@@ -20,7 +20,6 @@ function huntForTreasure(currentPath, cb) {
 
     if (stats.isFile() && fileName === PATTERN) {
       treasureMap[currentFilePath] = fs.readFileSync(currentFilePath).toString('utf-8');
-
     }
 
     if (stats.isDirectory()) {
@@ -31,15 +30,11 @@ function huntForTreasure(currentPath, cb) {
 
 function renderTreasureMap() {
   var keys = Object.keys(treasureMap);
-
   var outputStr = '';
-
   keys.forEach(function(key) {
-    console.log(key);
     outputStr += renderSection(key, treasureMap[key]);
   });
-
-  fs.writeFile(PATTERN, outputStr);
+  return outputStr;
 }
 
 function renderSection(filePath, fileContent) {
@@ -52,10 +47,16 @@ function renderSection(filePath, fileContent) {
   return outputStr;
 }
 
+function writeTreasureMap() {
+  var outputStr = renderTreasureMap();
+
+  fs.writeFile(PATTERN, outputStr);
+}
+
 
 function main() {
   huntForTreasure(START);
-  renderTreasureMap();
+  writeTreasureMap();
 }
 
 // main
