@@ -1,15 +1,18 @@
-// defaults
-TreasureMapConfigDefaults = {
+var extend = require('util')._extend;
+
+
+var config = {
   start: './test',
   pattern: 'README.x.md',
-  outputFile: './output/README.x.md'
-}
+  outputFile: './output/README.x.md',
+  ignoreDirs: []
+};
 
-// TODO extend defaults
-TreasureMapConfig = TreasureMapConfigDefaults;
+var userConfig = {
+  ignoreDirs: [ 'build' ]
+};
 
-TreasureMapConfig.ignoreDirs = [
-  'build'
-];
+// extend defaults
+config = extend(config, userConfig);
 
-module.exports = TreasureMapConfig;
+module.exports = config;
