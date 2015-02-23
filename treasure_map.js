@@ -1,20 +1,27 @@
 var fs = require('fs');
+var config = require('./treasure_map_config');
 
 var treasureMap = {};
 
 // config
-var START = './test';
-var PATTERN = 'README.x.md'
-var OUTPUT = './output/README.x.md'
+var START = config.start;
+var PATTERN = config.pattern;
+var OUTPUT = config.outputFile;
+var IGNORE_DIRS = config.ignoreDirs;
 
 
-// util
+// logic
 function huntForTreasure(currentPath, cb) {
   var files = fs.readdirSync(currentPath);
 
   for (var i in files) {
     // can be file or dir
-    var fileName = files[i]
+    var fileName = files[i];
+
+    if (IGNORE_DIRS.indexOf(fileName) !== -1) {
+      continue;
+    }
+
     var currentFilePath = currentPath + '/' + files[i];
     var stats = fs.statSync(currentFilePath);
 
