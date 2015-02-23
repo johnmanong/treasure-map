@@ -18,6 +18,12 @@ hello world again!
 - yee haw
 
 ---------------------
+./test/scripts/module/README.x.md
+---------------------
+# this is a component!
+
+- stuff
+---------------------
 ./test/stylesheets/README.x.md
 ---------------------
 # stylesheets
