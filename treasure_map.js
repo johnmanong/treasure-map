@@ -5,7 +5,7 @@ var treasureMap = {};
 
 // config
 var START = config.start;
-var PATTERN = config.pattern;
+var TARGET_FILE_NAME = config.targetFileName;
 var OUTPUT = config.outputFile;
 var IGNORE_DIRS = config.ignoreDirs;
 
@@ -25,7 +25,7 @@ function huntForTreasure(currentPath, cb) {
     var currentFilePath = currentPath + '/' + files[i];
     var stats = fs.statSync(currentFilePath);
 
-    if (stats.isFile() && fileName === PATTERN) {
+    if (stats.isFile() && fileName === TARGET_FILE_NAME) {
       treasureMap[currentFilePath] = fs.readFileSync(currentFilePath).toString('utf-8');
     }
 
@@ -57,7 +57,7 @@ function renderSection(filePath, fileContent) {
 function writeTreasureMap() {
   var outputStr = renderTreasureMap();
 
-  fs.writeFile(PATTERN, outputStr);
+  fs.writeFile(TARGET_FILE_NAME, outputStr);
 }
 
 
