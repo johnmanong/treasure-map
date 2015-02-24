@@ -1,43 +1,60 @@
 var fs = require('fs');
+var extend = require('util')._extend;
 var config = require('./treasure_map_config');
 
-var treasureMap = {};
-
 // config
-var START = config.start;
+var START_DIRS = config.startDirs;
+var IGNORE_DIRS = config.ignoreDirs;
 var TARGET_FILE_NAME = config.targetFileName;
 var OUTPUT = config.outputFile;
-var IGNORE_DIRS = config.ignoreDirs;
 
 
 // logic
-function huntForTreasure(currentPath, cb) {
-  var files = fs.readdirSync(currentPath);
-
-  for (var i in files) {
-    // can be file or dir
-    var fileName = files[i];
-
-    if (IGNORE_DIRS.indexOf(fileName) !== -1) {
-      continue;
-    }
-
-    var currentFilePath = currentPath + '/' + files[i];
-    var stats = fs.statSync(currentFilePath);
-
-    if (stats.isFile() && fileName === TARGET_FILE_NAME) {
-      treasureMap[currentFilePath] = fs.readFileSync(currentFilePath).toString('utf-8');
-    }
-
-    if (stats.isDirectory()) {
-      huntForTreasure(currentFilePath, cb);
-    }
-  }
+function generateTreasureMap() {
+  return START_DIRS.reduce(function(currentMap, currentDir) {
+    return extend(currentMap, generateTreasureMapForDir(currentDir));
+  }, {});
 }
 
-function renderTreasureMap() {
+function generateTreasureMapForDir(dir) {
+  var treasureMap = {};
+
+  function huntForTreasure(currentPath, cb) {
+    var files = fs.readdirSync(currentPath);
+
+    for (var i in files) {
+      // can be file or dir
+      var fileName = files[i];
+
+      if (IGNORE_DIRS.indexOf(fileName) !== -1) {
+        continue;
+      }
+
+      var currentFilePath = currentPath + '/' + files[i];
+      var stats = fs.statSync(currentFilePath);
+
+      if (stats.isFile() && fileName === TARGET_FILE_NAME) {
+        treasureMap[currentFilePath] = fs.readFileSync(currentFilePath).toString('utf-8');
+      }
+
+      if (stats.isDirectory()) {
+        huntForTreasure(currentFilePath, cb);
+      }
+    }
+  }
+
+  // start recursive search
+  huntForTreasure(dir);
+
+  return treasureMap;
+}
+
+function renderTreasureMap(treasureMap) {
   var keys = Object.keys(treasureMap);
   var outputStr = '';
+
+  keys.sort();
+
   keys.forEach(function(key) {
     outputStr += renderSection(key, treasureMap[key]);
   });
@@ -54,16 +71,15 @@ function renderSection(filePath, fileContent) {
   return outputStr;
 }
 
-function writeTreasureMap() {
-  var outputStr = renderTreasureMap();
+function writeTreasureMap(treasureMap) {
+  var outputStr = renderTreasureMap(treasureMap);
 
   fs.writeFile(TARGET_FILE_NAME, outputStr);
 }
 
-
 function main() {
-  huntForTreasure(START);
-  writeTreasureMap();
+  var treasureMap = generateTreasureMap();
+  writeTreasureMap(treasureMap);
 }
 
 // main

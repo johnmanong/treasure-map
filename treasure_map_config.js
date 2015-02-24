@@ -2,14 +2,14 @@ var extend = require('util')._extend;
 
 
 var config = {
-  start: '.'
+  startDirs: [ '.' ],
   targetFileName: 'README.x.md',
   outputFile: './output/README.x.md',
   ignoreDirs: []
 };
 
 var userConfig = {
-  start: './test',
+  startDirs: [ './test' ],
   ignoreDirs: [ 'build' ]
 };
 
