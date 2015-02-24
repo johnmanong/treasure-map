@@ -1,16 +1,22 @@
+## Directory Structure:
+ - test/
+ - test/dir1/
+ - test/scripts/
+ - test/scripts/module/
+ - test/stylesheets/
 
 ---------------------
-./test/README.x.md
+test/
 ---------------------
 hello world
 
 ---------------------
-./test/dir1/README.x.md
+test/dir1/
 ---------------------
 hello world again!
 
 ---------------------
-./test/scripts/README.x.md
+test/scripts/
 ---------------------
 # scripts
 
@@ -18,13 +24,13 @@ hello world again!
 - yee haw
 
 ---------------------
-./test/scripts/module/README.x.md
+test/scripts/module/
 ---------------------
 # this is a component!
 
 - stuff
 ---------------------
-./test/stylesheets/README.x.md
+test/stylesheets/
 ---------------------
 # stylesheets
 

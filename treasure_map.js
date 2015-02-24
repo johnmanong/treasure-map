@@ -49,11 +49,20 @@ function generateTreasureMapForDir(dir) {
   return treasureMap;
 }
 
+function cleanFilePathStr(filePathStr) {
+  return filePathStr.substring(2).replace(TARGET_FILE_NAME, '');
+}
+
 function renderTreasureMap(treasureMap) {
   var keys = Object.keys(treasureMap);
   var outputStr = '';
 
   keys.sort();
+
+  outputStr = '## Directory Structure:\n'
+  keys.forEach(function(key) {
+    outputStr += ' - ' + cleanFilePathStr(key) + '\n'
+  });
 
   keys.forEach(function(key) {
     outputStr += renderSection(key, treasureMap[key]);
@@ -64,7 +73,7 @@ function renderTreasureMap(treasureMap) {
 function renderSection(filePath, fileContent) {
   var line = '\n---------------------\n';
   var outputStr = line;
-  outputStr += filePath;
+  outputStr += cleanFilePathStr(filePath);
   outputStr += line;
   outputStr += fileContent;
 
