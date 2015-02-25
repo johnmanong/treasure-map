@@ -1,22 +1,22 @@
 ## Directory Structure:
- - test/
- - test/dir1/
- - test/scripts/
- - test/scripts/module/
- - test/stylesheets/
+ - /test/
+ - /test/dir1/
+ - /test/scripts/
+ - /test/scripts/module/
+ - /test/stylesheets/
 
 ---------------------
-test/
+/test/
 ---------------------
 hello world
 
 ---------------------
-test/dir1/
+/test/dir1/
 ---------------------
 hello world again!
 
 ---------------------
-test/scripts/
+/test/scripts/
 ---------------------
 # scripts
 
@@ -24,13 +24,13 @@ test/scripts/
 - yee haw
 
 ---------------------
-test/scripts/module/
+/test/scripts/module/
 ---------------------
 # this is a component!
 
 - stuff
 ---------------------
-test/stylesheets/
+/test/stylesheets/
 ---------------------
 # stylesheets
 

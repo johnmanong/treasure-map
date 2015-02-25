@@ -9,7 +9,7 @@ var config = {
 };
 
 var userConfig = {
-  startDirs: [ './test' ],
+  startDirs: [ '../test' ],
   ignoreDirs: [ 'build' ]
 };
 
