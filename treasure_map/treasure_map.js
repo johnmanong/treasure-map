@@ -11,8 +11,8 @@ var OUTPUT = config.outputFile;
 var LAYOUT = {
   verticalSpacing: '\n<br><br>\n',
   line: '\n---\n',
-  newLine: '\n',
-}
+  newLine: '\n'
+};
 
 // logic
 function generateTreasureMap() {
@@ -75,7 +75,7 @@ function renderTreasureMap(treasureMap) {
   outputStr += LAYOUT.verticalSpacing;
   outputStr += LAYOUT.newLine;
 
-  outputStr += '## Notes:'
+  outputStr += '## Notes:';
   outputStr += LAYOUT.line;
   keys.forEach(function(key) {
     outputStr += renderSection(key, treasureMap[key]);
