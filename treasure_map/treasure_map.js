@@ -61,7 +61,7 @@ function renderTreasureMap(treasureMap) {
 
   outputStr = '## Directory Structure:\n'
   keys.forEach(function(key) {
-    outputStr += ' - ' + cleanFilePathStr(key) + '\n'
+    outputStr += renderDirectoryReferenceLine(key);
   });
 
   keys.forEach(function(key) {
@@ -70,10 +70,25 @@ function renderTreasureMap(treasureMap) {
   return outputStr;
 }
 
+function renderDirectoryReferenceLine(dir) {
+  var cleanedDir = cleanFilePathStr(dir);
+  return ' - ' + renderPageLink(cleanedDir, cleanedDir) + '\n';
+}
+
+function renderPageLink(text, targetName) {
+  // creates link to somewhere in the page with name matching targetName
+  return '[' + text + '](#' + targetName + ')';
+}
+
+function renderHeadingWithLink(heading) {
+  // heading should be a unique reference so it can be linked to
+  return '`' + heading + '`<a name="' + heading + '"></a>\n';
+}
+
 function renderSection(filePath, fileContent) {
   var line = '\n---------------------\n';
   var outputStr = line;
-  outputStr += cleanFilePathStr(filePath);
+  outputStr += renderHeadingWithLink(cleanFilePathStr(filePath));
   outputStr += line;
   outputStr += fileContent;
 

@@ -1,22 +1,25 @@
 ## Directory Structure:
- - /test/
- - /test/dir1/
- - /test/scripts/
- - /test/scripts/module/
- - /test/stylesheets/
+ - [/test/](#/test/)
+ - [/test/dir1/](#/test/dir1/)
+ - [/test/scripts/](#/test/scripts/)
+ - [/test/scripts/module/](#/test/scripts/module/)
+ - [/test/stylesheets/](#/test/stylesheets/)
 
 ---------------------
-/test/
+`/test/`<a name="/test/"></a>
+
 ---------------------
 hello world
 
 ---------------------
-/test/dir1/
+`/test/dir1/`<a name="/test/dir1/"></a>
+
 ---------------------
 hello world again!
 
 ---------------------
-/test/scripts/
+`/test/scripts/`<a name="/test/scripts/"></a>
+
 ---------------------
 # scripts
 
@@ -24,13 +27,15 @@ hello world again!
 - yee haw
 
 ---------------------
-/test/scripts/module/
+`/test/scripts/module/`<a name="/test/scripts/module/"></a>
+
 ---------------------
 # this is a component!
 
 - stuff
 ---------------------
-/test/stylesheets/
+`/test/stylesheets/`<a name="/test/stylesheets/"></a>
+
 ---------------------
 # stylesheets
 
