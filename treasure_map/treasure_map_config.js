@@ -4,7 +4,7 @@ var extend = require('util')._extend;
 var config = {
   startDirs: [ '.' ],
   targetFileName: 'README.x.md',
-  outputFile: './output/README.x.md',
+  outputFile: 'README.x.md',  // file should exist
   ignoreDirs: []
 };
 

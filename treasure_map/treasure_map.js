@@ -98,7 +98,7 @@ function renderSection(filePath, fileContent) {
 function writeTreasureMap(treasureMap) {
   var outputStr = renderTreasureMap(treasureMap);
 
-  fs.writeFile(TARGET_FILE_NAME, outputStr);
+  fs.writeFile(OUTPUT, outputStr);
 }
 
 function main() {
