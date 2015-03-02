@@ -8,6 +8,11 @@ var IGNORE_DIRS = config.ignoreDirs;
 var TARGET_FILE_NAME = config.targetFileName;
 var OUTPUT = config.outputFile;
 
+var LAYOUT = {
+  verticalSpacing: '\n<br><br>\n',
+  line: '\n---\n',
+  newLine: '\n',
+}
 
 // logic
 function generateTreasureMap() {
@@ -50,7 +55,9 @@ function generateTreasureMapForDir(dir) {
 }
 
 function cleanFilePathStr(filePathStr) {
-  return filePathStr.substring(2).replace(TARGET_FILE_NAME, '');
+  var relDirPrefix = './';  // TODO from config
+  return filePathStr.substring(relDirPrefix.length)
+                    .replace(TARGET_FILE_NAME, '');
 }
 
 function renderTreasureMap(treasureMap) {
@@ -59,11 +66,17 @@ function renderTreasureMap(treasureMap) {
 
   keys.sort();
 
-  outputStr = '## Directory Structure:\n'
+  outputStr += '## Directory Structure:'
+  outputStr += LAYOUT.line;
   keys.forEach(function(key) {
     outputStr += renderDirectoryReferenceLine(key);
   });
 
+  outputStr += LAYOUT.verticalSpacing;
+  outputStr += LAYOUT.newLine;
+
+  outputStr += '## Notes:'
+  outputStr += LAYOUT.line;
   keys.forEach(function(key) {
     outputStr += renderSection(key, treasureMap[key]);
   });
@@ -72,7 +85,7 @@ function renderTreasureMap(treasureMap) {
 
 function renderDirectoryReferenceLine(dir) {
   var cleanedDir = cleanFilePathStr(dir);
-  return ' - ' + renderPageLink(cleanedDir, cleanedDir) + '\n';
+  return '\n - ' + renderPageLink(cleanedDir, cleanedDir);
 }
 
 function renderPageLink(text, targetName) {
@@ -82,15 +95,16 @@ function renderPageLink(text, targetName) {
 
 function renderHeadingWithLink(heading) {
   // heading should be a unique reference so it can be linked to
-  return '`' + heading + '`<a name="' + heading + '"></a>\n';
+  return '`' + heading + '`<a name="' + heading + '"></a>';
 }
 
 function renderSection(filePath, fileContent) {
-  var line = '\n---------------------\n';
-  var outputStr = line;
+  var outputStr = '';
   outputStr += renderHeadingWithLink(cleanFilePathStr(filePath));
-  outputStr += line;
+  outputStr += LAYOUT.verticalSpacing;
   outputStr += fileContent;
+  outputStr += LAYOUT.verticalSpacing;
+  outputStr += LAYOUT.line;
 
   return outputStr;
 }
