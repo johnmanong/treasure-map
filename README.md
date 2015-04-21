@@ -5,7 +5,7 @@
 This project allows documentation authors to write documentation close to the code, while giving readers the option to centralize that documentation.
 
 ## How to contribute:
-Just write and commit README files which match the target file name (default is `README.x.md`) wherever appropriate.
+Just write and commit README files which match the specified `targetFileName` (default is `README.x.md`) wherever appropriate.
 
 ## How to Compile:
 Once you have some documetation written, you can compile it all into a single README. 
