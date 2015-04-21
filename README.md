@@ -15,14 +15,14 @@ Once you have some documetation written, you can compile it all into a single RE
 
     $ node treasure_map.js
 
-# How it works
+## How it works
 
-## Compilation:
+### Compilation:
 Compilation is a depth first traversal of directory structure to find module level READMEs
 and generate an overall map and compiled documentation.
 
 
-## Options:
+### Options:
 Options are configured in `treasure_map_config.js`.
 
 	Available Options:
