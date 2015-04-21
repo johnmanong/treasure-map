@@ -8,7 +8,7 @@ This project allows documentation authors to write documentation close to the co
 Just write and commit README files which match the specified `targetFileName` (default is `README.x.md`) wherever appropriate.
 
 ## How to Compile:
-Once you have some documetation written, you can compile it all into a single README. 
+Once you have some READMEs written, you can compile it all into a single README. 
 
 *Note: The compiled output is should not be checked in due to merge conflict issues*
 
@@ -27,7 +27,7 @@ Options are configured in `treasure_map_config.js`.
 
 	Available Options:
 	- startDirs
-	-- List of dirs to recurisvely search 
+	-- List of dirs to recursively search 
 	-- default = '.'
 	
 	- targetFileName
